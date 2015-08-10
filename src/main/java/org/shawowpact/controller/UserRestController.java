@@ -18,7 +18,7 @@ public class UserRestController {
 	 @RequestMapping("/user")
 	    public User greeting(@RequestParam(value="name") String name) {
 	        return new User(name,
-	                            "password");
+	                            "password1");
 	    }
 
 }

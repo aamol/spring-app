@@ -22,10 +22,11 @@ public class UserRestController {
 	private UserRepository userRepository;
 
 	@RequestMapping("/userlogin")
-	public User getUserDetails(@RequestParam(value = "email") String email) {
+	public User getUserDetails(@RequestParam(value = "email") String email, 
+			@RequestParam(value = "password") String password) {
 		System.out.println("User email value as: " + email);
-		User userBean = userRepository.findByEmail(email);
-		
+		User userBean = userRepository.findByEmailAndPassword(email, password);
+
 		return userBean;
 	}
 

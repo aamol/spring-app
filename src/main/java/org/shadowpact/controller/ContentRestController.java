@@ -24,19 +24,15 @@ public class ContentRestController {
 	
 	@RequestMapping("/content")
 	public Content getContent(@RequestParam(value = "contentID") String contentID) {
-		System.out.println("Name value as: " + contentID);
 		Content content= contentRepository.findByContentID(contentID);
-		
 		return content;
 	}
 	
 	
 	@RequestMapping("/contentSet")
 	public String setContent(@RequestHeader(value ="contentID") String contentID , @RequestBody String contentData){
-		System.out.println("Name value as: " + contentID);
-		Content newContent = new Content("header", contentData);
+		Content newContent = new Content(contentID, contentData);
 		contentRepository.save(newContent);
-		
 		return "200";
 	}
 

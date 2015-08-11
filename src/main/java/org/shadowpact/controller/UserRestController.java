@@ -23,19 +23,15 @@ public class UserRestController {
 	@RequestMapping("/userlogin")
 	public User getUserDetails(@RequestParam(value = "email") String email, 
 			@RequestParam(value = "password") String password) {
-		System.out.println("User email value as: " + email);
 		User userBean = userRepository.findByEmailAndPassword(email, password);
-
 		return userBean;
 	}
 
 	@RequestMapping("/registerUser")
 	    public String registerNewUser(@RequestParam(value="name") String name, @RequestParam(value="email") String email, 
 	    		@RequestParam(value="password") String password) {
-	     System.out.println("User details:: name: " + name + " email: " + email + " password: " + password);   
 		 User userBean = new User(name, email, password);
 		 userRepository.save(userBean);
-
 		 return "200";
 	    }
 

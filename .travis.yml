@@ -29,4 +29,5 @@ deploy:
   endpoint: "shadowpact"
   region: "eu-west-1"
   debug: true
+  upload-dir: artifacts
   

@@ -27,5 +27,6 @@ deploy:
   bucket: "S3 Bucket"
   skip_cleanup: true
   endpoint: "shadowpact"
-  region: "eu-west-1"  
+  region: "eu-west-1"
+  debug: true
   

@@ -1,17 +1,16 @@
 /**
  * 
  */
-package com.sapient.controller;
+package org.shadowpact.controller;
 
+import org.shadowpact.bean.Content;
+import org.shadowpact.repository.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.sapient.bean.Content;
-import com.sapient.repository.ContentRepository;
 
 /**
  * @author aamol

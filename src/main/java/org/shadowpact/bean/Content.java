@@ -1,4 +1,4 @@
-package com.sapient.bean;
+package org.shadowpact.bean;
 
 import org.springframework.data.annotation.Id;
 

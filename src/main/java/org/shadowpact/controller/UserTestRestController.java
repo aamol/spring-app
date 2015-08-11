@@ -1,13 +1,12 @@
 /**
  * 
  */
-package com.sapient.controller;
+package org.shadowpact.controller;
 
+import org.shadowpact.bean.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.sapient.bean.User;
 
 /**
  * @author aamol

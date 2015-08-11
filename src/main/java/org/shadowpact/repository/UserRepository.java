@@ -1,11 +1,10 @@
 /**
  * 
  */
-package com.sapient.repository;
+package org.shadowpact.repository;
 
+import org.shadowpact.bean.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.sapient.bean.User;
 
 /**
  * @author raror3

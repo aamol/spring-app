@@ -1,4 +1,4 @@
-package com.sapient;
+package org.shadowpact;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

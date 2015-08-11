@@ -1,3 +1,8 @@
+addons:
+ artifacts: 
+  paths:
+   - $(git ls-files -o | tr "\n" ":")
+  debug: true
 env:
  global:
   - "ARTIFACTS_AWS_REGION=eu-west-1"

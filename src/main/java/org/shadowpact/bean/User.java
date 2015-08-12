@@ -9,24 +9,15 @@ import org.springframework.data.annotation.Id;
  * @author aamol
  *
  */
-public class User {
+public class User extends ResponseBean {
 	
 	@Id
+	private String userId;
 	private final String email;
 	
 	private final String name;
 	private final String password;
 
-
-	/**
-	 * @param name
-	 * @param password
-	 */
-	public User(String name, String email, String password) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
 	/**
 	 * @return the name
 	 */
@@ -43,9 +34,33 @@ public class User {
 		return email;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + ", password=" + password + "]";
+		return "User [email=" + email + ", name=" + name + ", password=" + password + ", getName()=" + getName()
+				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + ", getStatus()=" + getStatus()
+				+ ", getStatusCode()=" + getStatusCode() + ", getErrorCode()=" + getErrorCode() + ", getErrorMessage()="
+				+ getErrorMessage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	/**
+	 * @param status
+	 * @param statusCode
+	 * @param errorCode
+	 * @param errorMessage
+	 * @param email
+	 * @param name
+	 * @param password
+	 */
+	public User(String name, String email, String password, String statusCode, String errorCode, String errorMessage,
+			String status) {
+		super(status, statusCode, errorCode, errorMessage);
+		this.email = email;
+		this.name = name;
+		this.password = password;
 	}
 
 }

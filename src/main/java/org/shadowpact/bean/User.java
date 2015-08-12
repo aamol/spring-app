@@ -33,10 +33,18 @@ public class User extends ResponseBean {
 		return email;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + ", password=" + password + "]";
+		return "User [email=" + email + ", name=" + name + ", password=" + password + ", getName()=" + getName()
+				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + ", getStatus()=" + getStatus()
+				+ ", getStatusCode()=" + getStatusCode() + ", getErrorCode()=" + getErrorCode() + ", getErrorMessage()="
+				+ getErrorMessage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
 	/**
 	 * @param status
 	 * @param statusCode
@@ -49,13 +57,6 @@ public class User extends ResponseBean {
 	public User(String name, String email, String password, String statusCode, String errorCode, String errorMessage,
 			String status) {
 		super(status, statusCode, errorCode, errorMessage);
-		this.email = email;
-		this.name = name;
-		this.password = password;
-	}
-	
-	public User(String name, String email, String password) {
-		super(null, null, null, null);
 		this.email = email;
 		this.name = name;
 		this.password = password;

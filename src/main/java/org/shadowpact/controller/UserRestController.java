@@ -5,6 +5,7 @@ package org.shadowpact.controller;
 
 import org.shadowpact.bean.User;
 import org.shadowpact.configurations.Configurations;
+import org.shadowpact.helper.UserHelper;
 import org.shadowpact.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class UserRestController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	private UserHelper userHelper = new UserHelper();
 
 	@RequestMapping("/userLogin")
 	public User getUserDetails(@RequestParam(value = "email") String email, 
@@ -31,7 +34,7 @@ public class UserRestController {
 		if (null != userBean) {
 			return userBean;
 		} else {
-			return new User(null, null, null);
+			return new User(null, null, null, null, null, null, null);
 		}
 	}
 
@@ -39,12 +42,16 @@ public class UserRestController {
 	    public User registerNewUser(@RequestParam(value="name") String name, @RequestParam(value="email") String email, 
 	    		@RequestParam(value="password") String password) {
 	     System.out.println("User details:: name: " + name + " email: " + email + " password: " + password);   
-		 User userBean = new User(name, email, password);
-		 userBean = userRepository.save(userBean);
-		 System.out.println(userBean);
-
-		 User userResponseBean = new User(name, email, password, configObj.getHttpResponseCodeSuccess(), null, null, null);
-		 return userResponseBean;
+		 boolean userExists = userHelper.validateNewUser(email);
+		 User userBean = null;
+		 if (!userExists) {
+			 userBean = userRepository.save(userBean);
+			 System.out.println(userBean);
+			 userBean = new User(name, email, password, configObj.getHttpResponseCodeSuccess(), null, null, null);
+	     } else {
+	    	 userBean = new User(name, email, password, configObj.getHttpResponseCodeSuccess(), null, configObj.getUserExistsMessage(), null);
+	     }
+		 return userBean;
 	    }
 
 }

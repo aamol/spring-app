@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserRestController {
 	
-	Configurations configObj = new Configurations();
+	@Autowired
+	private Configurations configObj;
 	
 	@Autowired
 	private UserRepository userRepository;
 	
-	private UserHelper userHelper = new UserHelper();
+	@Autowired
+	private UserHelper userHelper;
 
 	@RequestMapping("/userLogin")
 	public User getUserDetails(@RequestParam(value = "email") String email, 
@@ -43,7 +45,7 @@ public class UserRestController {
 	    		@RequestParam(value="password") String password) {
 	     System.out.println("User details:: name: " + name + " email: " + email + " password: " + password);   
 		 boolean userExists = userHelper.validateNewUser(email);
-		 User userBean = null;
+		 User userBean = new User(name, email, password, null, null, null, null);
 		 if (!userExists) {
 			 userBean = userRepository.save(userBean);
 			 System.out.println(userBean);

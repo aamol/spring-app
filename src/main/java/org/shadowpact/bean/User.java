@@ -12,6 +12,7 @@ import org.springframework.data.annotation.Id;
 public class User extends ResponseBean {
 	
 	@Id
+	private String userId;
 	private final String email;
 	
 	private final String name;

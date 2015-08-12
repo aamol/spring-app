@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
  * @author aamol
  *
  */
-public class User {
+public class User extends ResponseBean {
 	
 	@Id
 	private final String email;
@@ -17,16 +17,6 @@ public class User {
 	private final String name;
 	private final String password;
 
-
-	/**
-	 * @param name
-	 * @param password
-	 */
-	public User(String name, String email, String password) {
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
 	/**
 	 * @return the name
 	 */
@@ -46,6 +36,29 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", name=" + name + ", password=" + password + "]";
+	}
+	/**
+	 * @param status
+	 * @param statusCode
+	 * @param errorCode
+	 * @param errorMessage
+	 * @param email
+	 * @param name
+	 * @param password
+	 */
+	public User(String name, String email, String password, String statusCode, String errorCode, String errorMessage,
+			String status) {
+		super(status, statusCode, errorCode, errorMessage);
+		this.email = email;
+		this.name = name;
+		this.password = password;
+	}
+	
+	public User(String name, String email, String password) {
+		super(null, null, null, null);
+		this.email = email;
+		this.name = name;
+		this.password = password;
 	}
 
 }

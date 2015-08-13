@@ -55,4 +55,4 @@ deploy:
   local-dir: build/libs
   on:
     branch: master
-    
+

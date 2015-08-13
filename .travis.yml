@@ -10,9 +10,9 @@ after_success:
 branches:
   only:
     - master
-    
+
 deploy:
-  provider: "codedeploy"
+  provider: "s3"
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   bucket: "shadowpact"
@@ -26,3 +26,19 @@ deploy:
   local-dir: "build/distributions"
   on:
     branch: "master"
+
+#deploy:
+#  provider: "codedeploy"
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
+#  bucket: "shadowpact"
+#  skip_cleanup: "true"
+#  bundle_type: "zip"
+#  key: "spring-app.zip"
+#  debug: "true"
+#  application: "spring-app"
+#  region: "us-west-2"
+#  deployment_group: "springappGroup"
+#  local-dir: "build/distributions"
+#  on:
+#    branch: "master"

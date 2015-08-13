@@ -51,7 +51,7 @@ deploy:
   debug: true
   application: node-app
   region: us-west-1
-  deployment_group: springappGroup  
+  deployment_group: springappGroup
   local-dir: build/libs
   on:
     branch: master

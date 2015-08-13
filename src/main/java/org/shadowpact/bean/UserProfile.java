@@ -6,7 +6,7 @@ package org.shadowpact.bean;
 import org.springframework.data.annotation.Id;
 
 /**
- * @author aamol
+ * @author raror3
  *
  */
 public class UserProfile extends ResponseBean {

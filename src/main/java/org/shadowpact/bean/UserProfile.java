@@ -3,8 +3,6 @@
  */
 package org.shadowpact.bean;
 
-import java.util.List;
-
 import org.springframework.data.annotation.Id;
 
 /**
@@ -14,33 +12,23 @@ import org.springframework.data.annotation.Id;
 public class UserProfile extends ResponseBean {
 	
 	@Id
-	private String userProfileId;
 	private final String email;
-	
-	/**
-	 * FirstName
-	 */
-	private final String name;
+	private final String firstName;
 	private final String lastName;
 	private final String company;
 	private final String street;
+	private final String city;
 	private final String zip;
-	private final List<String> state;
-	private final List<String> country;
+	private final String state;
+	private final String country;
 	private final String telephone;
 	private final String password;
 
 	/**
-	 * @return the userProfileId
+	 * @return the firstName
 	 */
-	public String getUserProfileId() {
-		return userProfileId;
-	}
-	/**
-	 * @param userProfileId the userProfileId to set
-	 */
-	public void setUserProfileId(String userProfileId) {
-		this.userProfileId = userProfileId;
+	public String getFirstName() {
+		return firstName;
 	}
 	/**
 	 * @return the lastName
@@ -61,6 +49,12 @@ public class UserProfile extends ResponseBean {
 		return street;
 	}
 	/**
+	 * @return the city
+	 */
+	public String getCity() {
+		return city;
+	}
+	/**
 	 * @return the zip
 	 */
 	public String getZip() {
@@ -69,13 +63,13 @@ public class UserProfile extends ResponseBean {
 	/**
 	 * @return the state
 	 */
-	public List<String> getState() {
+	public String getState() {
 		return state;
 	}
 	/**
 	 * @return the country
 	 */
-	public List<String> getCountry() {
+	public String getCountry() {
 		return country;
 	}
 	/**
@@ -83,12 +77,6 @@ public class UserProfile extends ResponseBean {
 	 */
 	public String getTelephone() {
 		return telephone;
-	}
-	/**
-	 * @return the FirstName
-	 */
-	public String getName() {
-		return name;
 	}
 	/**
 	 * @return the password
@@ -105,13 +93,13 @@ public class UserProfile extends ResponseBean {
 	 */
 	@Override
 	public String toString() {
-		return "UserProfile [userProfileId=" + userProfileId + ", email=" + email + ", name=" + name + ", lastName="
+		return "UserProfile [email=" + email + ", name=" + firstName + ", lastName="
 				+ lastName + ", company=" + company + ", street=" + street + ", zip=" + zip + ", state=" + state
 				+ ", country=" + country + ", telephone=" + telephone + ", password=" + password
-				+ ", getUserProfileId()=" + getUserProfileId() + ", getLastName()=" + getLastName() + ", getCompany()="
+				+ ", getLastName()=" + getLastName() + ", getCompany()="
 				+ getCompany() + ", getStreet()=" + getStreet() + ", getZip()=" + getZip() + ", getState()="
-				+ getState() + ", getCountry()=" + getCountry() + ", getTelephone()=" + getTelephone() + ", getName()="
-				+ getName() + ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
+				+ getState() + ", getCountry()=" + getCountry() + ", getTelephone()=" + getTelephone() + ", getFirstName()="
+				+ getFirstName() + ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	/**
 	 * @param status
@@ -119,7 +107,7 @@ public class UserProfile extends ResponseBean {
 	 * @param errorCode
 	 * @param errorMessage
 	 * @param email
-	 * @param name String FirstName
+	 * @param firstName String FirstName
 	 * @param lastName
 	 * @param company
 	 * @param street
@@ -129,15 +117,16 @@ public class UserProfile extends ResponseBean {
 	 * @param telephone
 	 * @param password
 	 */
-	public UserProfile(String name, String lastName, String company, String street, String zip, 
-			List<String> state, List<String> country, String telephone, String email, String password, 
+	public UserProfile(String firstName, String lastName, String company, String street, String city, String zip, 
+			String state, String country, String telephone, String email, String password, 
 			String status, String statusCode, String errorCode, String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.email = email;
-		this.name = name;
+		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
 		this.street = street;
+		this.city = city;
 		this.zip = zip;
 		this.state = state;
 		this.country = country;

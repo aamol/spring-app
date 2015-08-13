@@ -15,14 +15,14 @@ public class User extends ResponseBean {
 	private String userId;
 	private final String email;
 	
-	private final String name;
+	private final String firstName;
 	private final String password;
 
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 	/**
 	 * @return the password
@@ -39,7 +39,7 @@ public class User extends ResponseBean {
 	 */
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + ", password=" + password + ", getName()=" + getName()
+		return "User [email=" + email + ", name=" + firstName + ", password=" + password + ", getFirstName()=" + getFirstName()
 				+ ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + ", getStatus()=" + getStatus()
 				+ ", getStatusCode()=" + getStatusCode() + ", getErrorCode()=" + getErrorCode() + ", getErrorMessage()="
 				+ getErrorMessage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
@@ -52,14 +52,14 @@ public class User extends ResponseBean {
 	 * @param errorCode
 	 * @param errorMessage
 	 * @param email
-	 * @param name
+	 * @param firstName
 	 * @param password
 	 */
-	public User(String name, String email, String password, String statusCode, String errorCode, String errorMessage,
+	public User(String firstName, String email, String password, String statusCode, String errorCode, String errorMessage,
 			String status) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.email = email;
-		this.name = name;
+		this.firstName = firstName;
 		this.password = password;
 	}
 

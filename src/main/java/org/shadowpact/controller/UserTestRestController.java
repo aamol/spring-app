@@ -17,7 +17,6 @@ public class UserTestRestController {
 	
 	 @RequestMapping("/user")
 	    public User greeting(@RequestParam(value="name") String name) {
-	     System.out.println("Name value as: " + name);   
 		 return new User(name, null, "password", null, null, null, null);
 	    }
 

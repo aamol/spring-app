@@ -33,14 +33,16 @@ public class Content extends ResponseBean {
 	 * @param contentID
 	 * @param contentData
 	 */
-	public Content(String status, String statusCode, String errorCode, String errorMessage, String contentID,
-			String contentData) {
+	public Content(String contentID, String contentData, String status, String statusCode, String errorCode,
+			String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.contentID = contentID;
 		this.contentData = contentData;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -61,9 +63,9 @@ public class Content extends ResponseBean {
 	 * @param contentID
 	 * @param contentData
 	 */
-/*	public Content(String contentID, String contentData) {
-		super(null, null, null, null);
-		this.contentID = contentID;
-		this.contentData = contentData;
-	}*/
+	/*
+	 * public Content(String contentID, String contentData) { super(null, null,
+	 * null, null); this.contentID = contentID; this.contentData = contentData;
+	 * }
+	 */
 }

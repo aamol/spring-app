@@ -34,7 +34,7 @@ deploy:
   bucket: "shadowpact"
   skip_cleanup: "true"
   bundle_type: "zip"
-#  key: "build/distributions/spring-app.zip"
+  key: "spring-app.zip"
   debug: "true"
   application: "spring-app"
   region: "us-west-2"

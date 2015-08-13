@@ -53,3 +53,5 @@ deploy:
   region: us-west-1
   deployment_group: springappGroup  
   local-dir: build/libs
+  on:
+    branch: master

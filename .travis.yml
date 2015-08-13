@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
   
+after_script:
+  - gradle distZip 
 # whitelist
 branches:
   only:
@@ -15,11 +17,11 @@ deploy:
   bucket: "shadowpact"
   skip_cleanup: "true"
   bundle_type: "zip"
-  key: "*travis.zip"
+  key: "spring-app.zip"
   debug: "true"
   application: "node-app"
   region: "us-west-2"
   deployment_group: "springappGroup"
-  local-dir: "build/libs"
+  local-dir: "build/distributions"
   on:
     branch: "master"

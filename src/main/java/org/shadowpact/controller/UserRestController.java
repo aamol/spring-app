@@ -31,7 +31,6 @@ public class UserRestController {
 	@RequestMapping("/userLogin")
 	public User getUserDetails(@RequestParam(value = "email") String email, 
 			@RequestParam(value = "password") String password) {
-		System.out.println("User email value as: " + email);
 		User userBean = userRepository.findByEmailAndPassword(email, password);
 		if (null != userBean) {
 			return userBean;
@@ -44,12 +43,10 @@ public class UserRestController {
     public User registerNewUser(@RequestParam(value="name") String name, @RequestParam(value="email") String email, 
     		@RequestParam(value="password") String password) {
 
-		System.out.println("User details:: name: " + name + " email: " + email + " password: " + password);   
 		boolean userExists = userHelper.validateNewUser(email);
 		User userBean = new User(name, email, password, null, null, null, null);
 		if (!userExists) {
 			userBean = userRepository.save(userBean);
-			System.out.println(userBean);
 			userBean = new User(name, email, password, configObj.getHttpResponseCodeSuccess(), null, null, null);
 	    } else {
 	    	userBean = new User(name, email, password, configObj.getHttpResponseCodeSuccess(), null, configObj.getUserExistsMessage(), null);
@@ -60,8 +57,7 @@ public class UserRestController {
 	@RequestMapping("/saveUserProfile")
 	public User saveUserProfile(@RequestParam(value = "email") String email, 
 			@RequestParam(value = "password") String password) {
-		System.out.println("User email value as: " + email);
-		// TODO
+		// TODO Implement this method
 		return null;
 	}
 

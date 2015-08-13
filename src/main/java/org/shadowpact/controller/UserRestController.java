@@ -52,10 +52,10 @@ public class UserRestController {
 		boolean userExists = userHelper.validateNewUser(email);
 		User userBean = new User(firstName, email, password, null, null, null, null);
 		if (!userExists) {
-			userBean = userRepository.save(userBean);
+			userBean = userRepository.insert(userBean);
 			userBean = new User(firstName, email, password, configObj.getHttpResponseCodeSuccess(), null, null, null);
 	    } else {
-	    	userBean = new User(firstName, email, password, configObj.getHttpResponseCodeSuccess(), null, configObj.getUserExistsMessage(), null);
+	    	userBean = new User(firstName, email, password, configObj.getHttpResponseCodeSuccess(), configObj.getUserExistsErrorCode(), configObj.getUserExistsMessage(), null);
 	    }
 		return userBean;
     }

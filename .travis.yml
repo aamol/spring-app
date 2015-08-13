@@ -13,6 +13,7 @@ deploy:
   secret_access_key: "X1kb4aWuGolq9AOQ/SeBqXa0vKC/LAF/6vjYdlTPo/5mCOkLmF8TdcjW8lVAl38OjuawES7j6GZU3CcEYEFOeem8K/EyDqyoiuTimdW1jrgdUcw683gOUrEVnkSq+ovdbUvAlkOyv4+8CrlhmB726aBUcIWulSEc3q4vrHK5GUbWJqcNQKOHciGjewTuDtOnY5LOgOVksd1obDCjwDcp0Z0KAXgeq7dl/xDDigeX9y3Tr4GvfVJjvD9uOZrK3UtAxV4wT1+QcgpzJQIW0f5qzv/S5FzBrSeb1Sl2u7N+zJDgtbr5vDF5KFsA1TkSj/hyYFPbMDUMwh7UCaa4OAXkeKuZx9jdmBP9tyUrSUYAQoH/Bs0lFlo52AnBKHF5I/h7oOYZLdwJH3JhUrTjSxGjh2ocAEDBMhNLOXNatR7oS60O1jaN+x7luWolGbX0nhRbr48ucmPV9jh10XPuD10X3ccSsYp/Gt/AxTjOk6pOfhQOa6PD3sAbGNPNGvRUbJMEy4NIiU6mYoHRxKRhEiHKPOJgqnqlY+b2RGakWGNZowI850HDNXXfbKsPGiObgiNF8TeatYOlkAir1FvBOJOUXVAbo9XngNORzEcOEKojDPAizJwuw1clHvVZ+6/8LkyGNgXDA2Hc0NnTmqcwFgrNT1ub68pJqKLdsst9fP1qaLQ="
   bucket: "shadowpact"
   skip_cleanup: "true"
+  bundle_type: "jar"
   key: "*.jar"
   debug: "true"
   application: "node-app"

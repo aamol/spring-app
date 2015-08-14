@@ -102,6 +102,7 @@ public class UserProfile extends ResponseBean {
 				+ getFirstName() + ", getPassword()=" + getPassword() + ", getEmail()=" + getEmail() + "]";
 	}
 	/**
+	 * Constructor for User Profile object.
 	 * @param status
 	 * @param statusCode
 	 * @param errorCode

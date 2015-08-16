@@ -2,7 +2,7 @@
 <a href='https://travis-ci.org/aamol/spring-app'><img src='https://secure.travis-ci.org/aamol/spring-app.png?branch=master'></a>
 
 
-#Steps to set-up this project:
+Steps to set-up this project:
 
 i. Download source code from GIT repository: https://github.com/aamol/spring-app
 
@@ -17,6 +17,9 @@ iv. Run a clean build for thr project in your workspace - Gradle build.
 v. Run the application as "Spring Boot app"
 
 	Note: Application will get started at port 8080.
+	Also, we have integrated this with Mongo-DB for data persistence/query. 
+
+vi. You can install uMongo application to query the Mongo-DB instance used in this project implementation.
 
 
 Author: Raghav Arora / Amol

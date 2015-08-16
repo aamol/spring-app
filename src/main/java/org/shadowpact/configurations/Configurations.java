@@ -18,6 +18,9 @@ public class Configurations {
 	private String userExistsMessage;
 	private String userExistsErrorCode;
 	private String userSaveFailedErrorCode;
+	private String httpResponseCodeNotFound;
+	private String productNotFound;
+	private String productNotFoundMessage;
 
 	/**
 	 * @return the userSaveFailedErrorCode
@@ -81,6 +84,48 @@ public class Configurations {
 
 	public void setHttpResponseCodeSuccess(String httpResponseCodeSuccess) {
 		this.httpResponseCodeSuccess = httpResponseCodeSuccess;
+	}
+
+	/**
+	 * @return the httpResponseCodeNotFound
+	 */
+	public String getHttpResponseCodeNotFound() {
+		return httpResponseCodeNotFound;
+	}
+
+	/**
+	 * @param httpResponseCodeNotFound the httpResponseCodeNotFound to set
+	 */
+	public void setHttpResponseCodeNotFound(String httpResponseCodeNotFound) {
+		this.httpResponseCodeNotFound = httpResponseCodeNotFound;
+	}
+
+	/**
+	 * @return the productNotFound
+	 */
+	public String getProductNotFound() {
+		return productNotFound;
+	}
+
+	/**
+	 * @param productNotFound the productNotFound to set
+	 */
+	public void setProductNotFound(String productNotFound) {
+		this.productNotFound = productNotFound;
+	}
+
+	/**
+	 * @return the productNotFoundMessage
+	 */
+	public String getProductNotFoundMessage() {
+		return productNotFoundMessage;
+	}
+
+	/**
+	 * @param productNotFoundMessage the productNotFoundMessage to set
+	 */
+	public void setProductNotFoundMessage(String productNotFoundMessage) {
+		this.productNotFoundMessage = productNotFoundMessage;
 	}
 	
 }

@@ -17,6 +17,7 @@ public class ItemBean extends ResponseBean {
 	private final String itemDescription;
 	private final String itemSize;
 	private final String itemColor;
+	private final String itemPrice;
 	private final String itemMaterial;
 	private final String itemFit;
 	private final String published;
@@ -86,6 +87,13 @@ public class ItemBean extends ResponseBean {
 	}
 
 	/**
+	 * @return the itemPrice
+	 */
+	public String getItemPrice() {
+		return itemPrice;
+	}
+
+	/**
 	 * @param status
 	 * @param statusCode
 	 * @param errorCode
@@ -101,7 +109,7 @@ public class ItemBean extends ResponseBean {
 	 * @param buyable
 	 */
 	public ItemBean(String skuId, String itemName, String itemDescription, String itemSize,
-			String itemColor, String itemMaterial, String itemFit, String published, String buyable, String status,
+			String itemColor, String itemPrice, String itemMaterial, String itemFit, String published, String buyable, String status,
 			String statusCode, String errorCode, String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.skuId = skuId;
@@ -109,6 +117,7 @@ public class ItemBean extends ResponseBean {
 		this.itemDescription = itemDescription;
 		this.itemSize = itemSize;
 		this.itemColor = itemColor;
+		this.itemPrice = itemPrice;
 		this.itemMaterial = itemMaterial;
 		this.itemFit = itemFit;
 		this.published = published;

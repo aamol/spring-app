@@ -24,7 +24,7 @@ public class ContentRestController {
 	
 	@RequestMapping("/content")
 	public Content getContent(@RequestParam(value = "contentID") String contentID) {
-		// System.out.println("Name value as: " + contentID);
+		System.out.println("Name value as: " + contentID);
 		Content content= contentRepository.findByContentID(contentID);
 		if(null==content){
 			content= new Content(contentID, "No Content available", null, null, null, null);

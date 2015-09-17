@@ -3,9 +3,14 @@
  */
 package org.shadowpact.controller;
 
+import java.util.List;
+
 import org.shadowpact.bean.ProductBean;
+import org.shadowpact.bean.ProductItemPriceResponseBean;
 import org.shadowpact.configurations.Configurations;
+import org.shadowpact.helper.ProductHelper;
 import org.shadowpact.repository.ItemRepository;
+import org.shadowpact.repository.PriceRepository;
 import org.shadowpact.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +33,12 @@ public class ProductDisplayRestController {
 	private ProductRepository productRepository;
 
 	@Autowired
+	private ProductHelper productHelper;
+
+	@Autowired
+	private PriceRepository priceRepository;
+
+	@Autowired
 	private ItemRepository itemRepository;
 
 	@RequestMapping("/productDisplay")
@@ -42,7 +53,32 @@ public class ProductDisplayRestController {
 					configObj.getProductNotFoundMessage());
 		}
 	}
-	
+
+	@RequestMapping("/productPrice")
+	public ProductItemPriceResponseBean getProductPrice(@RequestParam(value = "productId") String productId) {
+		System.out.println("User productId value as: " + productId);
+		List<String> itemIds = productHelper.getItemsFromProduct(productId);
+		if (null != itemIds) {
+			ProductItemPriceResponseBean priceResponseBean = new ProductItemPriceResponseBean(null, configObj.getHttpResponseCodeSuccess(), null, null);
+			// List<ItemBean> itemBeanList = productHelper.getItems(itemIds);
+			priceResponseBean = productHelper.calculateProductPrice(itemIds, priceResponseBean);
+			// ProductItemPriceResponseBean priceResponseBean = new ProductItemPriceResponseBean(itemPriceBean, productPriceFrom, productPriceTo, status, statusCode, errorCode, errorMessage)
+			return priceResponseBean;
+		} else {
+			return new ProductItemPriceResponseBean(null, configObj.getHttpResponseCodeNotFound(), 
+					configObj.getProductNotFound(), configObj.getProductNotFoundMessage());
+		}
+	}
+
+	@RequestMapping("/getItemsForProduct")
+	public int getItemsForProduct(@RequestParam(value = "productId") String productId) {
+		List<String> itemIds = productHelper.getItemsFromProduct(productId);
+		if (null != itemIds) {
+			return itemIds.size();
+		}
+		return 0;
+	}
+
 	@RequestMapping("/loadProduct")
 	public ProductBean setProduct(@RequestHeader(value = "productId") String productId, @RequestBody String productData) {
 		System.out.println("ProductId value as: " + productId);

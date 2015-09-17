@@ -98,7 +98,7 @@ public class ProductDisplayRestController {
 	}
 	
 	@RequestMapping("/loadItemPrice")
-	public PriceBean setProduct(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "priceType") String priceType,
+	public PriceBean loadItemPrice(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "priceType") String priceType,
 			@RequestHeader(value = "itemPrice") String itemPrice) {
 		System.out.println("SkuId value as: " + skuId);
 		

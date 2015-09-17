@@ -14,8 +14,16 @@ import org.springframework.data.annotation.Id;
 public class ProductItemBean extends ResponseBean {
 
 	@Id
+	private final String productItemId;
 	private final String productId;
-	private final String[] skuId;
+	private final String skuId;
+
+	/**
+	 * @return the productItemId
+	 */
+	public String getProductItemId() {
+		return productItemId;
+	}
 
 	/**
 	 * @return the productId
@@ -27,7 +35,7 @@ public class ProductItemBean extends ResponseBean {
 	/**
 	 * @return the skuId
 	 */
-	public String[] getSkuId() {
+	public String getSkuId() {
 		return skuId;
 	}
 
@@ -38,7 +46,7 @@ public class ProductItemBean extends ResponseBean {
 	 */
 	@Override
 	public String toString() {
-		return "ProductItemBean [productId=" + productId + ", skuId=" + Arrays.toString(skuId) + "]";
+		return "ProductItemBean [productId=" + productId + ", skuId=" + skuId + "]";
 	}
 
 	/**
@@ -49,9 +57,10 @@ public class ProductItemBean extends ResponseBean {
 	 * @param productId
 	 * @param skuId
 	 */
-	public ProductItemBean(String productId, String[] skuId, String status, String statusCode, String errorCode,
-			String errorMessage) {
+	public ProductItemBean(String productItemId, String productId, String skuId, String status, String statusCode,
+			String errorCode, String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
+		this.productItemId = productItemId;
 		this.productId = productId;
 		this.skuId = skuId;
 	}

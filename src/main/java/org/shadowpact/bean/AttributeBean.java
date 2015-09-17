@@ -12,17 +12,19 @@ import org.springframework.data.annotation.Id;
 public class AttributeBean extends ResponseBean {
 
 	@Id
-	private final String skuId;
+	private final String attributeId;
 	/**
 	 * Attribute types: color,fit,material,size.
 	 */
 	private final String attributeType;
-	private final String attributeId;
+	private final String attributeValue;
+	private final String skuId;
+
 	/**
-	 * @return the skuId
+	 * @return the attributeId
 	 */
-	public String getSkuId() {
-		return skuId;
+	public String getAttributeId() {
+		return attributeId;
 	}
 	/**
 	 * @return the attributeType
@@ -31,26 +33,16 @@ public class AttributeBean extends ResponseBean {
 		return attributeType;
 	}
 	/**
-	 * @return the attributeId
+	 * @return the attributeValue
 	 */
-	public String getAttributeId() {
-		return attributeId;
+	public String getAttributeValue() {
+		return attributeValue;
 	}
 	/**
-	 * @param status
-	 * @param statusCode
-	 * @param errorCode
-	 * @param errorMessage
-	 * @param skuId
-	 * @param attributeType
-	 * @param attributeId
+	 * @return the skuId
 	 */
-	public AttributeBean(String skuId, String attributeType, String attributeId, String status,
-			String statusCode, String errorCode, String errorMessage) {
-		super(status, statusCode, errorCode, errorMessage);
-		this.skuId = skuId;
-		this.attributeType = attributeType;
-		this.attributeId = attributeId;
+	public String getSkuId() {
+		return skuId;
 	}
 
 	/* (non-Javadoc)
@@ -58,8 +50,26 @@ public class AttributeBean extends ResponseBean {
 	 */
 	@Override
 	public String toString() {
-		return "AttributeBean [skuId=" + skuId + ", attributeType=" + attributeType + ", attributeId=" + attributeId
-				+ "]";
+		return "AttributeBean [attributeId=" + attributeId + ", attributeType=" + attributeType + ", attributeValue="
+				+ attributeValue + ", skuId=" + skuId + "]";
+	}
+	/**
+	 * @param status
+	 * @param statusCode
+	 * @param errorCode
+	 * @param errorMessage
+	 * @param attributeId
+	 * @param attributeType
+	 * @param attributeValue
+	 * @param skuId
+	 */
+	public AttributeBean(String attributeId, String attributeType, String attributeValue, String skuId,
+			String status, String statusCode, String errorCode, String errorMessage) {
+		super(status, statusCode, errorCode, errorMessage);
+		this.attributeId = attributeId;
+		this.attributeType = attributeType;
+		this.attributeValue = attributeValue;
+		this.skuId = skuId;
 	}
 
 }

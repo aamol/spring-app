@@ -5,6 +5,7 @@ package org.shadowpact.controller;
 
 import java.util.List;
 
+import org.shadowpact.bean.PriceBean;
 import org.shadowpact.bean.ProductBean;
 import org.shadowpact.bean.ProductItemPriceResponseBean;
 import org.shadowpact.configurations.Configurations;
@@ -94,6 +95,22 @@ public class ProductDisplayRestController {
 			productBean = productRepository.insert(productBean);
 		}
 		return productBean;
+	}
+	
+	@RequestMapping("/loadItemPrice")
+	public PriceBean setProduct(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "priceType") String priceType,
+			@RequestHeader(value = "itemPrice") String itemPrice) {
+		System.out.println("SkuId value as: " + skuId);
+		
+		PriceBean priceBean = new PriceBean(skuId, priceType, itemPrice, null, null, null, null, null, null);
+
+		if (priceRepository.exists(skuId)) {
+			priceBean = priceRepository.save(priceBean);
+			priceBean = new PriceBean(skuId, priceType, itemPrice, null, null, null, configObj.getHttpResponseCodeSuccess(), null, null);
+		} else {
+			priceBean = priceRepository.insert(priceBean);
+		}
+		return priceBean;
 	}
 
 }

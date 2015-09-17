@@ -15,83 +15,14 @@ public class ItemBean extends ResponseBean {
 	private final String skuId;
 	private final String itemName;
 	private final String itemDescription;
-	private final String itemSize;
-	private final String itemColor;
-	private final String itemPrice;
-	private final String itemMaterial;
-	private final String itemFit;
 	private final String published;
 	private final String buyable;
 
-	/**
-	 * @return the skuId
-	 */
-	public String getSkuId() {
-		return skuId;
-	}
-
-	/**
-	 * @return the itemName
-	 */
-	public String getItemName() {
-		return itemName;
-	}
-
-	/**
-	 * @return the itemDescription
-	 */
-	public String getItemDescription() {
-		return itemDescription;
-	}
-
-	/**
-	 * @return the itemSize
-	 */
-	public String getItemSize() {
-		return itemSize;
-	}
-
-	/**
-	 * @return the itemColor
-	 */
-	public String getItemColor() {
-		return itemColor;
-	}
-
-	/**
-	 * @return the itemMaterial
-	 */
-	public String getItemMaterial() {
-		return itemMaterial;
-	}
-
-	/**
-	 * @return the itemFit
-	 */
-	public String getItemFit() {
-		return itemFit;
-	}
-
-	/**
-	 * @return the published
-	 */
-	public String getPublished() {
-		return published;
-	}
-
-	/**
-	 * @return the buyable
-	 */
-	public String getBuyable() {
-		return buyable;
-	}
-
-	/**
-	 * @return the itemPrice
-	 */
-	public String getItemPrice() {
-		return itemPrice;
-	}
+//	private final String itemSize;
+//	private final String itemColor;
+//	private final String itemPrice;
+//	private final String itemMaterial;
+//	private final String itemFit;
 
 	/**
 	 * @param status
@@ -101,25 +32,15 @@ public class ItemBean extends ResponseBean {
 	 * @param skuId
 	 * @param itemName
 	 * @param itemDescription
-	 * @param itemSize
-	 * @param itemColor
-	 * @param itemMaterial
-	 * @param itemFit
 	 * @param published
 	 * @param buyable
 	 */
-	public ItemBean(String skuId, String itemName, String itemDescription, String itemSize,
-			String itemColor, String itemPrice, String itemMaterial, String itemFit, String published, String buyable, String status,
-			String statusCode, String errorCode, String errorMessage) {
+	public ItemBean(String skuId, String itemName, String itemDescription, String published, String buyable, 
+			String status, String statusCode, String errorCode, String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.skuId = skuId;
 		this.itemName = itemName;
 		this.itemDescription = itemDescription;
-		this.itemSize = itemSize;
-		this.itemColor = itemColor;
-		this.itemPrice = itemPrice;
-		this.itemMaterial = itemMaterial;
-		this.itemFit = itemFit;
 		this.published = published;
 		this.buyable = buyable;
 	}
@@ -132,8 +53,7 @@ public class ItemBean extends ResponseBean {
 	@Override
 	public String toString() {
 		return "ItemBean [skuId=" + skuId + ", itemName=" + itemName + ", itemDescription="
-				+ itemDescription + ", itemSize=" + itemSize + ", itemColor=" + itemColor + ", itemMaterial="
-				+ itemMaterial + ", itemFit=" + itemFit + ", published=" + published + ", buyable=" + buyable + "]";
+				+ itemDescription + ", published=" + published + ", buyable=" + buyable + "]";
 	}
 
 }

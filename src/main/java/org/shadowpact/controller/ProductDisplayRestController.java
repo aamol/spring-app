@@ -42,7 +42,22 @@ public class ProductDisplayRestController {
 					configObj.getProductNotFoundMessage());
 		}
 	}
-	
+
+	@RequestMapping("/productPrice")
+	public ProductBean getProductPrice(@RequestParam(value = "productId") String productId) {
+		System.out.println("User productId value as: " + productId);
+		// TODO: Write code here.
+		return null;
+	}
+
+	@RequestMapping("/getItemsForProduct")
+	public ProductBean getItemsForProduct(@RequestParam(value = "productId") String productId) {
+		System.out.println("User productId value as: " + productId);
+		// TODO: Write code here.
+		// TODO: Return type also be revisited.
+		return null;
+	}
+
 	@RequestMapping("/loadProduct")
 	public ProductBean setProduct(@RequestHeader(value = "productId") String productId, @RequestBody String productData) {
 		System.out.println("ProductId value as: " + productId);
@@ -59,5 +74,6 @@ public class ProductDisplayRestController {
 		}
 		return productBean;
 	}
+
 
 }

@@ -69,4 +69,13 @@ public class PriceBean extends ResponseBean {
 		this.productPriceTo = productPriceTo;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "PriceBean [skuId=" + skuId + ", priceType=" + priceType + ", itemPrice=" + itemPrice
+				+ ", productPriceFrom=" + productPriceFrom + ", productPriceTo=" + productPriceTo + "]";
+	}
+
 }

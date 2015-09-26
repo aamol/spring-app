@@ -80,13 +80,19 @@ public class ProductHelper {
 		} else {
 			String minPrice = "0";
 			String maxPrice = "0";
+			List<PriceBean> priceBeans = new ArrayList<PriceBean>();
 			for (String skuId : itemIds) {
+				System.out.println("SkuId: " + skuId);
 				PriceBean priceBean = priceRepository.findBySkuId(skuId);
-				List<PriceBean> priceBeans = new ArrayList<PriceBean>();
+				System.out.println("Sku Price Bean: " + priceBean);
 				if (null != priceBean) {
 					priceBeans.add(priceBean);
 				}
 				if (null != priceBean.getItemPrice()) {
+					System.out.println("minPrice: " + minPrice);
+					if (null == minPrice || minPrice.equals("0") || minPrice.equals("0.0")) {
+						minPrice = Double.toString(Double.parseDouble(priceBean.getItemPrice()));
+					}
 					minPrice = Double.toString(Math.min(Double.parseDouble(minPrice), Double.parseDouble(priceBean.getItemPrice())));
 					maxPrice = Double.toString(Math.max(Double.parseDouble(maxPrice), Double.parseDouble(priceBean.getItemPrice())));
 				}
@@ -94,6 +100,7 @@ public class ProductHelper {
 			}
 			priceResponseBean.setProductPriceFrom(minPrice);
 			priceResponseBean.setProductPriceTo(maxPrice);
+			System.out.println("Price Response Bean: " + priceResponseBean);
 		}
 		return priceResponseBean;
 	}

@@ -65,7 +65,7 @@ public class ProductItemPriceResponseBean extends ResponseBean {
 	@Override
 	public String toString() {
 		return "ProductItemPriceResponseBean [PriceBean=" + itemPriceBean + ", productPriceFrom=" + productPriceFrom
-				+ ", productPriceTo=" + productPriceTo + "]";
+				+ ", productPriceTo=" + productPriceTo + ", itemBeans=" + itemPriceBean + "]";
 	}
 
 	public ProductItemPriceResponseBean(String status, String statusCode, String errorCode, String errorMessage) {

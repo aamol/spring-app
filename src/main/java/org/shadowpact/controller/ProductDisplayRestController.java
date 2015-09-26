@@ -56,7 +56,7 @@ public class ProductDisplayRestController {
 	@Autowired
 	private ItemRepository itemRepository;
 
-	@RequestMapping("/productDisplay")
+	@RequestMapping("/getProductDetails")
 	public ProductBean getProductDetails(@RequestParam(value = "productId") String productId) {
 		System.out.println("User productId value as: " + productId);
 		ProductBean productBean = productRepository.findByProductId(productId);
@@ -69,7 +69,7 @@ public class ProductDisplayRestController {
 		}
 	}
 
-	@RequestMapping("/productPrice")
+	@RequestMapping("/getProductPrice")
 	public ProductItemPriceResponseBean getProductPrice(@RequestParam(value = "productId") String productId) {
 		System.out.println("User productId value as: " + productId);
 		List<String> itemIds = productHelper.getItemsFromProduct(productId);

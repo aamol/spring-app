@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.shadowpact.bean.ItemBean;
 import org.shadowpact.bean.PriceBean;
+import org.shadowpact.bean.ProductBean;
 import org.shadowpact.bean.ProductItemBean;
 import org.shadowpact.bean.ProductItemPriceResponseBean;
 import org.shadowpact.repository.ItemRepository;
@@ -22,16 +23,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ProductHelper {
-	
+
 	@Autowired
 	private ProductItemRepository productItemRepository;
-	
+
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@Autowired
 	private PriceRepository priceRepository;
-	
+
 	public List<String> getItemsFromProduct(String productId) {
 		// System.out.println("Product ID: " + productId);
 		List<String> itemList = new ArrayList<String>();
@@ -45,7 +46,7 @@ public class ProductHelper {
 		}
 		return itemList;
 	}
-	
+
 	public List<String> getPriceForItems(String productId) {
 		// System.out.println("Product ID: " + productId);
 		List<String> itemList = new ArrayList<String>();
@@ -93,8 +94,10 @@ public class ProductHelper {
 					if (null == minPrice || minPrice.equals("0") || minPrice.equals("0.0")) {
 						minPrice = Double.toString(Double.parseDouble(priceBean.getItemPrice()));
 					}
-					minPrice = Double.toString(Math.min(Double.parseDouble(minPrice), Double.parseDouble(priceBean.getItemPrice())));
-					maxPrice = Double.toString(Math.max(Double.parseDouble(maxPrice), Double.parseDouble(priceBean.getItemPrice())));
+					minPrice = Double.toString(
+							Math.min(Double.parseDouble(minPrice), Double.parseDouble(priceBean.getItemPrice())));
+					maxPrice = Double.toString(
+							Math.max(Double.parseDouble(maxPrice), Double.parseDouble(priceBean.getItemPrice())));
 				}
 				priceResponseBean.setItemPriceBean(priceBeans);
 			}
@@ -104,5 +107,13 @@ public class ProductHelper {
 		}
 		return priceResponseBean;
 	}
-	
+
+	public ProductBean populateSkuArray(ProductBean productBean) {
+		if (null != productBean && null != productBean.getProductId()) {
+			List<String> itemIds = getItemsFromProduct(productBean.getProductId());
+			System.out.println(itemIds.toArray());
+		}
+		return productBean;
+	}
+
 }

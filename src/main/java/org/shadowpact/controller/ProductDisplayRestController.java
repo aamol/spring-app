@@ -5,6 +5,7 @@ package org.shadowpact.controller;
 
 import java.util.List;
 
+import org.shadowpact.bean.AttributeBean;
 import org.shadowpact.bean.ItemInventoryBean;
 import org.shadowpact.bean.PriceBean;
 import org.shadowpact.bean.ProductBean;
@@ -13,6 +14,7 @@ import org.shadowpact.bean.ProductItemBean;
 import org.shadowpact.bean.ProductItemPriceResponseBean;
 import org.shadowpact.configurations.Configurations;
 import org.shadowpact.helper.ProductHelper;
+import org.shadowpact.repository.AttributeRepository;
 import org.shadowpact.repository.ItemInventoryRepository;
 import org.shadowpact.repository.ItemRepository;
 import org.shadowpact.repository.PriceRepository;
@@ -54,12 +56,16 @@ public class ProductDisplayRestController {
 	private ProductImageRepository productImageRepository;
 
 	@Autowired
+	private AttributeRepository attributeRepository;
+
+	@Autowired
 	private ItemRepository itemRepository;
 
 	@RequestMapping("/getProductDetails")
 	public ProductBean getProductDetails(@RequestParam(value = "productId") String productId) {
 		System.out.println("User productId value as: " + productId);
 		ProductBean productBean = productRepository.findByProductId(productId);
+		productBean = productHelper.populateSkuArray(productBean);
 		if (null != productBean) {
 			return productBean;
 		} else {
@@ -180,4 +186,36 @@ public class ProductDisplayRestController {
 		return productImageBean;
 	}
 
+	@RequestMapping("/loadItemAttributes")
+	public AttributeBean loadItemAttributes(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "attributeType") String attributeType,
+			@RequestHeader(value = "attributeValue") String attributeValue) {
+		System.out.println("Sku Id value as: " + skuId);
+		
+		double randomNum = Math.random()*10;
+		int randomNumber = (int) randomNum;
+		System.out.println(randomNumber);
+		String attributeId = String.valueOf(randomNumber);
+		AttributeBean attributeBean = new AttributeBean(attributeId, attributeType, attributeValue, skuId, null, null, null, null);
+
+		if (attributeRepository.exists(skuId)) {
+			attributeBean = attributeRepository.save(attributeBean);
+			attributeBean = new AttributeBean(attributeId, attributeType, attributeValue, skuId, null, configObj.getHttpResponseCodeSuccess(), null, null);
+		} else {
+			attributeBean = attributeRepository.insert(attributeBean);
+		}
+		return attributeBean;
+	}
+
+	@RequestMapping("/getItemAttributes")
+	public List<AttributeBean> getItemAttributes(@RequestParam(value = "skuId") String skuId) {
+		System.out.println("SkuId value as: " + skuId);
+		
+		List<AttributeBean> attrBeanList = attributeRepository.findBySkuId(skuId);
+		if (null != attrBeanList && !attrBeanList.isEmpty()) {
+			return attrBeanList;
+		} else {
+			return null;
+		}
+	}
+	
 }

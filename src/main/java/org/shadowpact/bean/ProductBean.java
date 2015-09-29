@@ -14,7 +14,7 @@ public class ProductBean extends ResponseBean {
 	@Id
 	private final String productId;
 	private final String categoryId;
-	private final String [] skuIdArr;
+	private String [] skuIdArr;
 	private final String productName;
 	private final String productDescription;
 	private final String productDetail;
@@ -83,6 +83,13 @@ public class ProductBean extends ResponseBean {
 	 */
 	public String[] getSkuIdArr() {
 		return skuIdArr;
+	}
+
+	/**
+	 * @param skuIdArr the skuIdArr to set
+	 */
+	public void setSkuIdArr(String[] skuIdArr) {
+		this.skuIdArr = skuIdArr;
 	}
 
 	/**

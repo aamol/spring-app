@@ -14,14 +14,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class ItemAttributeBean extends ResponseBean {
 
 	@Id
+	@JsonProperty( "skuId" )
+	private String skuId;
 	@JsonProperty( "size" )
 	private String size;
 	@JsonProperty( "color" )
 	private String color;
 	@JsonProperty( "fitType" )
 	private String fitType;
-	@JsonProperty( "skuId" )
-	private String skuId;
 	@JsonProperty( "material" )
 	private String material;
 	@JsonProperty( "inventory" )

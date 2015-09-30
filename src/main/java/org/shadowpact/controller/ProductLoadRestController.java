@@ -94,7 +94,7 @@ public class ProductLoadRestController {
 	public ProductItemBean loadProductItemMapping(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "productId") String productId) {
 		System.out.println("SkuId value as: " + skuId + " and productId value as: " + productId);
 		
-		double randomNum = Math.random()*10;
+		double randomNum = Math.random()*100;
 		int randomNumber = (int) randomNum;
 		System.out.println(randomNumber);
 		String productItemId = String.valueOf(randomNumber);

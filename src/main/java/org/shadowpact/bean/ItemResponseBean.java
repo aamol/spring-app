@@ -12,7 +12,7 @@ public class ItemResponseBean extends ResponseBean {
 	private final String skuId;
 	private PriceBean itemPriceBean;
 	private ItemInventoryBean itemInventoryBean;
-	private AttributeBean itemAttributeBean;
+	private ItemAttributeBean itemAttributeBean;
 	private ItemBean itemBean;
 
 	/**
@@ -48,7 +48,7 @@ public class ItemResponseBean extends ResponseBean {
 	/**
 	 * @return the itemAttributeBean
 	 */
-	public AttributeBean getItemAttributeBean() {
+	public ItemAttributeBean getItemAttributeBean() {
 		return itemAttributeBean;
 	}
 
@@ -56,7 +56,7 @@ public class ItemResponseBean extends ResponseBean {
 	 * @param itemAttributeBean
 	 *            the itemAttributeBean to set
 	 */
-	public void setItemAttributeBean(AttributeBean itemAttributeBean) {
+	public void setItemAttributeBean(ItemAttributeBean itemAttributeBean) {
 		this.itemAttributeBean = itemAttributeBean;
 	}
 
@@ -94,7 +94,7 @@ public class ItemResponseBean extends ResponseBean {
 	 * @param itemBean
 	 */
 	public ItemResponseBean(String skuId, PriceBean itemPriceBean, ItemInventoryBean itemInventoryBean,
-			AttributeBean itemAttributeBean, ItemBean itemBean, String status, String statusCode, String errorCode,
+			ItemAttributeBean itemAttributeBean, ItemBean itemBean, String status, String statusCode, String errorCode,
 			String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);
 		this.skuId = skuId;

@@ -3,33 +3,26 @@
  */
 package org.shadowpact.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.shadowpact.bean.AttributeBean;
-import org.shadowpact.bean.ItemInventoryBean;
-import org.shadowpact.bean.PriceBean;
+import org.shadowpact.bean.ItemAttributeBean;
+import org.shadowpact.bean.ProductAttributeResponseBean;
 import org.shadowpact.bean.ProductBean;
-import org.shadowpact.bean.ProductImageBean;
 import org.shadowpact.bean.ProductItemBean;
 import org.shadowpact.bean.ProductItemPriceResponseBean;
 import org.shadowpact.configurations.Configurations;
 import org.shadowpact.helper.ProductHelper;
 import org.shadowpact.repository.AttributeRepository;
-import org.shadowpact.repository.ItemInventoryRepository;
-import org.shadowpact.repository.ItemRepository;
-import org.shadowpact.repository.PriceRepository;
-import org.shadowpact.repository.ProductImageRepository;
 import org.shadowpact.repository.ProductItemRepository;
 import org.shadowpact.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author raror3
- *
  */
 @RestController
 public class ProductDisplayRestController {
@@ -42,24 +35,12 @@ public class ProductDisplayRestController {
 
 	@Autowired
 	private ProductHelper productHelper;
-
-	@Autowired
-	private PriceRepository priceRepository;
 	
 	@Autowired
 	private ProductItemRepository productItemRepository;
 
 	@Autowired
-	private ItemInventoryRepository itemInventoryRepository;
-	
-	@Autowired
-	private ProductImageRepository productImageRepository;
-
-	@Autowired
 	private AttributeRepository attributeRepository;
-
-	@Autowired
-	private ItemRepository itemRepository;
 
 	@RequestMapping("/getProductDetails")
 	public ProductBean getProductDetails(@RequestParam(value = "productId") String productId) {
@@ -100,122 +81,26 @@ public class ProductDisplayRestController {
 		return 0;
 	}
 
-	@RequestMapping("/loadProduct")
-	public ProductBean setProduct(@RequestHeader(value = "productId") String productId, @RequestHeader(value = "categoryId") String categoryId,
-			@RequestHeader(value = "productName") String productName, @RequestHeader(value = "productDescription") String productDescription,
-			@RequestHeader(value = "productDetail") String productDetail, @RequestHeader(value = "productSummary") String productSummary,
-			@RequestHeader(value = "published") String published, @RequestHeader(value = "buyable") String buyable) {
-
+	@RequestMapping("/getProductOptions")
+	public ProductAttributeResponseBean getProductOptions(@RequestParam(value = "productId") String productId) {
 		System.out.println("ProductId value as: " + productId);
-		ProductBean productBean = new ProductBean(productId, categoryId, null, productName, productDescription, productDetail, productSummary, published, buyable, null, null, null, null);
 
-		if (productRepository.exists(productId)) {
-			productBean = productRepository.save(productBean);
-			productBean = new ProductBean(productId, null, null, null, null, null, null, null, null, null,
-					configObj.getHttpResponseCodeSuccess(), null, null);
+		ProductAttributeResponseBean responseBean = new ProductAttributeResponseBean(productId, null, null, configObj.getHttpResponseCodeSuccess(), null, null);
+		ArrayList<ProductItemBean> productItemBeanList = productItemRepository.findByProductId(productId);
+		if (null == productItemBeanList || productItemBeanList.isEmpty()) {
+			responseBean = new ProductAttributeResponseBean(productId, null, null, configObj.getHttpResponseCodeNotFound(), configObj.getProductNotFound(), configObj.getProductNotFoundMessage());
 		} else {
-			productBean = productRepository.insert(productBean);
+			responseBean.setProductId(productId);
+			ArrayList<ItemAttributeBean> attributeBeans = new ArrayList<ItemAttributeBean>();
+			for (ProductItemBean itemBean : productItemBeanList) {
+				System.out.println("Item Bean: " + itemBean);
+				ItemAttributeBean attributeBean = attributeRepository.findBySkuId(itemBean.getSkuId());
+				if (null != attributeBean) {
+					attributeBeans.add(attributeBean);
+				}
+			}
+			responseBean.setItemAttributeBeans(attributeBeans);
 		}
-		return productBean;
-	}
-	
-	@RequestMapping("/loadItemPrice")
-	public PriceBean loadItemPrice(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "priceType") String priceType,
-			@RequestHeader(value = "itemPrice") String itemPrice) {
-		System.out.println("SkuId value as: " + skuId);
-		
-		PriceBean priceBean = new PriceBean(skuId, priceType, itemPrice, null, null, null, null, null, null);
-
-		if (priceRepository.exists(skuId)) {
-			priceBean = priceRepository.save(priceBean);
-			priceBean = new PriceBean(skuId, priceType, itemPrice, null, null, null, configObj.getHttpResponseCodeSuccess(), null, null);
-		} else {
-			priceBean = priceRepository.insert(priceBean);
-		}
-		return priceBean;
-	}
-
-	@RequestMapping("/loadProductItemMap")
-	public ProductItemBean loadProductItemMapping(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "productId") String productId) {
-		System.out.println("SkuId value as: " + skuId + " and productId value as: " + productId);
-		
-		double randomNum = Math.random()*10;
-		int randomNumber = (int) randomNum;
-		System.out.println(randomNumber);
-		String productItemId = String.valueOf(randomNumber);
-		ProductItemBean productItemBean = new ProductItemBean(productItemId, productId, skuId, null, null, null, null);
-
-		if (productItemRepository.exists(productItemId)) {
-			productItemBean = productItemRepository.save(productItemBean);
-			productItemBean = new ProductItemBean(productItemId, productId, skuId, null, configObj.getHttpResponseCodeSuccess(), null, null);
-		} else {
-			productItemBean = productItemRepository.insert(productItemBean);
-		}
-		return productItemBean;
-	}
-	
-	@RequestMapping("/loadItemInventory")
-	public ItemInventoryBean loadItemInventory(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "availableInventory") int availableInventory) {
-		System.out.println("SkuId value as: " + skuId + " and Available Inventory value as: " + availableInventory);
-		
-		ItemInventoryBean itemInventoryBean = new ItemInventoryBean(skuId, availableInventory, null, null, null, null);
-
-		if (itemInventoryRepository.exists(skuId)) {
-			itemInventoryBean = itemInventoryRepository.save(itemInventoryBean);
-			itemInventoryBean = new ItemInventoryBean(skuId, availableInventory, null, configObj.getHttpResponseCodeSuccess(), null, null);
-		} else {
-			itemInventoryBean = itemInventoryRepository.insert(itemInventoryBean);
-		}
-		return itemInventoryBean;
-	}
-	
-	@RequestMapping("/loadProductImages")
-	public ProductImageBean loadProductImages(@RequestHeader(value = "productId") String productId, @RequestHeader(value = "mainImageUrl") String mainImageUrl,
-			@RequestHeader(value = "secondaryImageUrl1") String secondaryImageUrl1, @RequestHeader(value = "secondaryImageUrl2") String secondaryImageUrl2, 
-			@RequestHeader(value = "secondaryImageUrl3") String secondaryImageUrl3, @RequestHeader(value = "secondaryImageUrl4") String secondaryImageUrl4) {
-		System.out.println("ProductId value as: " + productId);
-		
-		ProductImageBean productImageBean = new ProductImageBean(productId, mainImageUrl, secondaryImageUrl1, secondaryImageUrl2, secondaryImageUrl3, secondaryImageUrl4, null, null, null, null);
-
-		if (productImageRepository.exists(productId)) {
-			productImageBean = productImageRepository.save(productImageBean);
-			productImageBean = new ProductImageBean(productId, mainImageUrl, secondaryImageUrl1, secondaryImageUrl2, secondaryImageUrl3, secondaryImageUrl4, null, configObj.getHttpResponseCodeSuccess(), null, null);
-		} else {
-			productImageBean = productImageRepository.insert(productImageBean);
-		}
-		return productImageBean;
-	}
-
-	@RequestMapping("/loadItemAttributes")
-	public AttributeBean loadItemAttributes(@RequestHeader(value = "skuId") String skuId, @RequestHeader(value = "attributeType") String attributeType,
-			@RequestHeader(value = "attributeValue") String attributeValue) {
-		System.out.println("Sku Id value as: " + skuId);
-		
-		double randomNum = Math.random()*10;
-		int randomNumber = (int) randomNum;
-		System.out.println(randomNumber);
-		String attributeId = String.valueOf(randomNumber);
-		AttributeBean attributeBean = new AttributeBean(attributeId, attributeType, attributeValue, skuId, null, null, null, null);
-
-		if (attributeRepository.exists(skuId)) {
-			attributeBean = attributeRepository.save(attributeBean);
-			attributeBean = new AttributeBean(attributeId, attributeType, attributeValue, skuId, null, configObj.getHttpResponseCodeSuccess(), null, null);
-		} else {
-			attributeBean = attributeRepository.insert(attributeBean);
-		}
-		return attributeBean;
-	}
-
-	@RequestMapping("/getItemAttributes")
-	public List<AttributeBean> getItemAttributes(@RequestParam(value = "skuId") String skuId) {
-		System.out.println("SkuId value as: " + skuId);
-		
-		List<AttributeBean> attrBeanList = attributeRepository.findBySkuId(skuId);
-		if (null != attrBeanList && !attrBeanList.isEmpty()) {
-			return attrBeanList;
-		} else {
-			return null;
-		}
-	}
-	
+		return responseBean;
+	}	
 }

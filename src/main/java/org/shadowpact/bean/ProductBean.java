@@ -3,6 +3,8 @@
  */
 package org.shadowpact.bean;
 
+import java.util.ArrayList;
+
 import org.springframework.data.annotation.Id;
 
 /**
@@ -14,7 +16,7 @@ public class ProductBean extends ResponseBean {
 	@Id
 	private final String productId;
 	private final String categoryId;
-	private String [] skuIdArr;
+	private ArrayList<String> skuIdArr;
 	private final String productName;
 	private final String productDescription;
 	private final String productDetail;
@@ -81,14 +83,14 @@ public class ProductBean extends ResponseBean {
 	/**
 	 * @return the skuIdArr
 	 */
-	public String[] getSkuIdArr() {
+	public ArrayList<String> getSkuIdArr() {
 		return skuIdArr;
 	}
 
 	/**
 	 * @param skuIdArr the skuIdArr to set
 	 */
-	public void setSkuIdArr(String[] skuIdArr) {
+	public void setSkuIdArr(ArrayList<String> skuIdArr) {
 		this.skuIdArr = skuIdArr;
 	}
 
@@ -105,7 +107,7 @@ public class ProductBean extends ResponseBean {
 	 * @param published
 	 * @param buyable
 	 */
-	public ProductBean(String productId, String categoryId, String [] skuIdArr, String productName, String productDescription,
+	public ProductBean(String productId, String categoryId, ArrayList<String> skuIdArr, String productName, String productDescription,
 			String productDetail, String productSummary, String published, String buyable, String status,
 			String statusCode, String errorCode, String errorMessage) {
 		super(status, statusCode, errorCode, errorMessage);

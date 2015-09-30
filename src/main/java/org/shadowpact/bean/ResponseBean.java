@@ -43,5 +43,12 @@ public class ResponseBean {
 		this.errorCode = errorCode;
 		this.errorMessage = errorMessage;
 	}
+
+	/**
+	 * 
+	 */
+	public ResponseBean() {
+		super();
+	}
 	
 }

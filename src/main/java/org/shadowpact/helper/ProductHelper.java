@@ -6,6 +6,7 @@ package org.shadowpact.helper;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.shadowpact.bean.ItemAttributeBean;
 import org.shadowpact.bean.ItemBean;
 import org.shadowpact.bean.PriceBean;
 import org.shadowpact.bean.ProductBean;
@@ -33,10 +34,10 @@ public class ProductHelper {
 	@Autowired
 	private PriceRepository priceRepository;
 
-	public List<String> getItemsFromProduct(String productId) {
+	public ArrayList<String> getItemsFromProduct(String productId) {
 		// System.out.println("Product ID: " + productId);
-		List<String> itemList = new ArrayList<String>();
-		List<ProductItemBean> productItemBeanList = productItemRepository.findByProductId(productId);
+		ArrayList<String> itemList = new ArrayList<String>();
+		ArrayList<ProductItemBean> productItemBeanList = productItemRepository.findByProductId(productId);
 		if (null == productItemBeanList || productItemBeanList.isEmpty()) {
 			return null;
 		} else {
@@ -110,10 +111,25 @@ public class ProductHelper {
 
 	public ProductBean populateSkuArray(ProductBean productBean) {
 		if (null != productBean && null != productBean.getProductId()) {
-			List<String> itemIds = getItemsFromProduct(productBean.getProductId());
-			System.out.println(itemIds.toArray());
+			ArrayList<String> itemIds = getItemsFromProduct(productBean.getProductId());
+			System.out.println(itemIds);
+			productBean.setSkuIdArr(itemIds);
 		}
 		return productBean;
+	}
+
+	public String validateAttributeJson(ItemAttributeBean attributeJson) {
+		String errorMessage = null;
+		if (null == attributeJson) {
+			errorMessage = "Error!!! Request Body seem to be empty";
+		} else if (null == attributeJson.getSkuId()) {
+			errorMessage = "Error!!! Please enter item id in attribute: skuId";
+		} else if (null == productItemRepository.findBySkuId(attributeJson.getSkuId())) {
+			errorMessage = "Error!!! Please enter correct value of: skuId";
+		} else if (null == attributeJson.getSize() || null == attributeJson.getColor() || null == attributeJson.getFitType() || null == attributeJson.getMaterial() || null == attributeJson.getInventoryBean()) {
+			errorMessage = "Error!!! Please enter atleast any one value of these: size, color, material, fitType, inventory details";
+		}
+		return errorMessage;
 	}
 
 }

@@ -3,7 +3,7 @@
  */
 package org.shadowpact.repository;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.shadowpact.bean.ProductItemBean;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -14,6 +14,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface ProductItemRepository extends MongoRepository<ProductItemBean, String> {
 	
-	public List<ProductItemBean> findByProductId(String productId);
+	public ArrayList<ProductItemBean> findByProductId(String productId);
+	
+	public ArrayList<ProductItemBean> findBySkuId(String skuId);
 
 }

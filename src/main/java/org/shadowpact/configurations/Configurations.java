@@ -21,6 +21,8 @@ public class Configurations {
 	private String httpResponseCodeNotFound;
 	private String productNotFound;
 	private String productNotFoundMessage;
+	private String userError;
+	private String userErrorCode;
 
 	/**
 	 * @return the userSaveFailedErrorCode
@@ -126,6 +128,34 @@ public class Configurations {
 	 */
 	public void setProductNotFoundMessage(String productNotFoundMessage) {
 		this.productNotFoundMessage = productNotFoundMessage;
+	}
+
+	/**
+	 * @return the userError
+	 */
+	public String getUserError() {
+		return userError;
+	}
+
+	/**
+	 * @param userError the userError to set
+	 */
+	public void setUserError(String userError) {
+		this.userError = userError;
+	}
+
+	/**
+	 * @return the userErrorCode
+	 */
+	public String getUserErrorCode() {
+		return userErrorCode;
+	}
+
+	/**
+	 * @param userErrorCode the userErrorCode to set
+	 */
+	public void setUserErrorCode(String userErrorCode) {
+		this.userErrorCode = userErrorCode;
 	}
 	
 }

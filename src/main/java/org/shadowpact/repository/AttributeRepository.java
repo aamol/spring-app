@@ -3,17 +3,17 @@
  */
 package org.shadowpact.repository;
 
-import java.util.List;
-
-import org.shadowpact.bean.AttributeBean;
+import org.shadowpact.bean.ItemAttributeBean;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
  * @author raror3
- *
  */
-public interface AttributeRepository extends MongoRepository<AttributeBean, String> {
+public interface AttributeRepository extends MongoRepository<ItemAttributeBean, String> {
 	
-	public List<AttributeBean> findBySkuId(String skuId);
+	public ItemAttributeBean findBySkuId(String skuId);
+	/**
+	 * TODO: Get data for item along with its inventory in it.
+	 */
 
 }

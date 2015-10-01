@@ -92,11 +92,14 @@ public class ProductDisplayRestController {
 		} else {
 			responseBean.setProductId(productId);
 			ArrayList<ItemAttributeBean> attributeBeans = new ArrayList<ItemAttributeBean>();
+			System.out.println("AttributeBeans" + attributeBeans);
 			for (ProductItemBean itemBean : productItemBeanList) {
 				System.out.println("Item Bean: " + itemBean);
 				ItemAttributeBean attributeBean = attributeRepository.findBySkuId(itemBean.getSkuId());
 				if (null != attributeBean) {
 					attributeBeans.add(attributeBean);
+				} else {
+					System.out.println("ERROR!!!!!! " + attributeBean + " AttributeBean found as null");
 				}
 			}
 			responseBean.setItemAttributeBeans(attributeBeans);
